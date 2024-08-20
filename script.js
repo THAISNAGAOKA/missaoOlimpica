@@ -2,7 +2,7 @@ const modalidades = ["Ginástica", "Judô", "Surfe", "Vôlei"];
 
 //Com base na constante modalidade, 
 //Coloque o número que represente o esporte do seu grupo
-const escolha = ?;
+const escolha = "Judô";
 
 document.querySelector('body').style.backgroundImage = "url('img/"+modalidades[escolha]+".png')";
 document.querySelector('title').textContent = "Missão Olímpica | "+modalidades[escolha];
@@ -15,6 +15,7 @@ const caixaResultado = document.querySelector(".caixa-resultado");
 const textoResultado = document.querySelector(".texto-resultado");
 
 let atual = 0;
+let pontos = 0;
 let perguntaAtual;
 let historiaFinal = "";
 
@@ -29,7 +30,7 @@ function mostraPergunta(){
     }
     perguntaAtual = perguntas[escolha][atual];
     caixaPerguntas.textContent = perguntaAtual.enunciado;
-    caixaAlternativas.textContent = "";
+    caixaAlternativas.textContent = "3 pontos é BRONZE";
     mostraAlternativas();
 }
 
@@ -53,12 +54,24 @@ function respostaSelecionada(opcaoSelecionada){
 
 function mostraResultado(){
     textoResultado.textContent = historiaFinal;
-    caixaPerguntas.textContent = "Resultado";
+    caixaPerguntas.textContent = "5 pontos é OURO!";
     caixaAlternativas.textContent = "";
     // chame a função podiumMedalhas aqui
     
 }
+function podiumMedalhas(){
+    if (pontos==3 ){
+        caixaPrincipal.style.backgroundImage = "url('img/bronze.png')";
+        caixaPerguntas.textContent = "3 pontos é BRONZE!"
+    } if (pontos==4){
+        caixaPrincipal.style.backgroundImage = "url('img/prata.png')";
+        caixaPerguntas.textContent = "4 pontos é PRATA!"
+    } if (pontos==5){
+        caixaPrincipal.style.backgroundImage = "url('img/ouro.png')";
+        caixaPerguntas.textContent = "5 pontos é OURO!"
+    }
 
+}
 //crie uma função podiumMedalhas
 //E verifique a quantidade de pontos
 //  - Se pontos igual a 3 ganha bronze, dentro dessa condicional:
